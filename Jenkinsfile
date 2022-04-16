@@ -2,17 +2,20 @@ pipeline{
     agent any
 
     stages{
-        stage("TEST"){
+        stage("Build"){
             steps{
-                sh "pwd"
-                sh "pytest -v"
-                
+                sh "pwd"                
                 sh "docker build -t fastapi:1.0 ."
             }
         }
-        stage("Build"){
+        stage("Run"){
             steps{
-                echo "Build.."
+                sh "docker run -itd -p 9009:8080 --name fastapi fastapi:1.0"
+            }
+        }
+        stage("Test"){
+            steps{
+                sh "docker exec -it fastapi pytest -v"
             }
         }
     }
