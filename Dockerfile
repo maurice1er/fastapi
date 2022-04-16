@@ -1,5 +1,7 @@
 FROM python:latest
 
+LABEL "app"="fastapi"
+
 WORKDIR /usr/src/app
 
 COPY ./requirements.txt .
