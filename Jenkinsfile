@@ -19,7 +19,7 @@ pipeline{
         }
         stage("Run container"){
             steps{
-                scripts{
+                script{
                     try{
                         sh "docker rm -f fastapi"
                     }
