@@ -5,8 +5,10 @@ pipeline{
         stage("TEST"){
             steps{
                 sh "pwd"
-                sh "ls -l"
-                echo "Test.."
+                sh "pytest -v"
+            }
+            steps{
+                sh "docker build -t fastapi:1.0 ."
             }
         }
         stage("Build"){
