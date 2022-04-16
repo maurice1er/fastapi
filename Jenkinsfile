@@ -3,7 +3,7 @@ pipeline{
     // agent { docker { image 'python:3.8' } }
 
     stages{
-        stage("Build"){
+        stage("Build image"){
             steps{
                 sh "pwd"  
                 sh "docker system prune"
@@ -12,14 +12,20 @@ pipeline{
                 sh "docker images"
             }
         }
-        stage("Run"){
-            steps{
-                sh "docker run -itd -p 9009:8080 --name fastapi fastapi:1.0"
-            }
-        }
-        stage("Test"){
+        stage("Test app"){
             steps{
                 sh "python3 test_api.py"
+            }
+        }
+        stage("Run container"){
+            steps{
+                try{
+                    sh "docker rm -f fastapi"
+                }
+                catch (err){
+                    echo "Erreur de suppression du container fastapi"
+                }
+                sh "docker run -itd -p 9009:8080 --name fastapi fastapi:1.0"
             }
         }
     }
