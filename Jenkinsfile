@@ -19,7 +19,7 @@ pipeline{
         }
         stage("Test"){
             steps{
-                sh "docker exec -it fastapi pytest -v"
+                sh "python3 test_api.py"
             }
         }
     }
