@@ -1,6 +1,6 @@
 FROM python:latest
 
-LABEL "app"="fastapi"
+LABEL "app=fastapi"
 
 WORKDIR /usr/src/app
 
