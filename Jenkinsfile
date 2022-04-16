@@ -6,8 +6,7 @@ pipeline{
             steps{
                 sh "pwd"
                 sh "pytest -v"
-            }
-            steps{
+                
                 sh "docker build -t fastapi:1.0 ."
             }
         }
