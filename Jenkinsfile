@@ -19,11 +19,14 @@ pipeline{
         }
         stage("Run container"){
             steps{
-                try{
-                    sh "docker rm -f fastapi"
-                }
-                catch (err){
-                    echo "Erreur de suppression du container fastapi"
+                scripts{
+                    try{
+                        sh "docker rm -f fastapi"
+                    }
+                    catch (err){
+                        echo "Erreur de suppression du container fastapi"
+                        echo "${err}"
+                    }
                 }
                 sh "docker run -itd -p 9009:8080 --name fastapi fastapi:1.0"
             }
