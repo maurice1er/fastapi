@@ -28,7 +28,7 @@ pipeline{
         }
         stage("Test app"){
             steps{
-                sh "docker exec -it fastapi pytest"
+                sh "docker exec fastapi pytest"
             }
         }
     }
