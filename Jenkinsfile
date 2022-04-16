@@ -12,11 +12,6 @@ pipeline{
                 sh "docker images"
             }
         }
-        stage("Test app"){
-            steps{
-                sh "python3 test_api.py"
-            }
-        }
         stage("Run container"){
             steps{
                 script{
@@ -29,6 +24,11 @@ pipeline{
                     }
                 }
                 sh "docker run -itd -p 9009:8080 --name fastapi fastapi:1.0"
+            }
+        }
+        stage("Test app"){
+            steps{
+                sh "docker exec -it fastapi pytest"
             }
         }
     }
