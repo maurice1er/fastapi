@@ -1,12 +1,15 @@
 pipeline{
-    // agent any
-    agent { docker { image 'python:3.8' } }
+    agent any
+    // agent { docker { image 'python:3.8' } }
 
     stages{
         stage("Build"){
             steps{
                 sh "pwd"  
-                sh "docker images"                
+                sh "docker images" 
+                script {
+                    dockerImage = docker.build("python:3.8")
+                }               
                 sh "docker build -t fastapi:1.0 ."
                 sh "docker images"
             }
