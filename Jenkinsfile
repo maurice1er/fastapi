@@ -7,7 +7,7 @@ pipeline{
             steps{
                 sh "pwd"  
                 sh "docker system prune"
-                sh "docker images"     
+                sh "docker images"
                 sh "docker build -t fastapi:1.0 ."
                 sh "docker images"
             }
