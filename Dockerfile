@@ -3,7 +3,7 @@ FROM python:3.8
 WORKDIR /usr/src/app
 
 # RUN apt-get update -y && apt-get install -y python3-pip python3-dev 
-RUN apt -y update
+RUN apt update
 RUN apt install -yq python3-dev
 RUN apt install -yq python3-pip
 
