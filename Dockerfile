@@ -3,7 +3,7 @@ FROM python:3.8
 WORKDIR /usr/src/app
 
 RUN apt upgrade -y 
-RUN apt update -y apt install -y build-essential python3-dev python3-pip
+RUN apt update -y && apt install -y build-essential python3-dev python3-pip
 
 COPY ./requirements.txt .
 
