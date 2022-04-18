@@ -3,6 +3,16 @@ pipeline{
     // agent { docker { image 'python:3.8' } }
 
     stages{
+        stage("venv"){
+            steps{
+                sh "pwd"  
+                sh "ls -la"  
+                sh "python3 -m venv myenv"
+                sh "source myenv/bin/activate"
+                sh "python3 -r install requirements.txt"
+                sh "pytest -v"
+            }
+        }
         stage("Build image"){
             steps{
                 sh "pwd"  
