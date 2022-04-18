@@ -8,8 +8,11 @@ pipeline{
                 sh "pwd"  
                 sh "ls -la"  
                 sh "python3 -m venv myenv"
+                sh "ls -la"  
                 sh "source myenv/bin/activate"
+                sh "ls -la"  
                 sh "python3 -r install requirements.txt"
+                sh "ls -la"  
                 sh "pytest -v"
             }
         }
