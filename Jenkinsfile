@@ -6,6 +6,7 @@ pipeline{
         stage("Build image"){
             steps{
                 sh "pwd"  
+                sh "ls -la"  
                 sh "docker system prune --filter 'app=fastapi'"
                 sh "docker images"
                 sh "docker build -t fastapi:1.0 ."
