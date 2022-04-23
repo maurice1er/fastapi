@@ -24,11 +24,17 @@ pipeline{
                         echo "${err}"
                     }
                 }
-                sh "docker run -itd -p 9009:8080 --name fastapi -v ${PWD}:/usr/src/app fastapi:1.0"
+                sh "pwd"
+                sh "ls -la"
+                sh "docker run -itd -p 9009:8080 --name fastapi -v ${PWD}/$JOB_NAME:/usr/src/app fastapi:1.0"
+                sh "pwd"
+                sh "ls -la"
             }
         }
         stage("Test app"){
             steps{
+                sh "pwd"
+                sh "ls -la"
                 sh "docker exec fastapi pytest --verbose --junit-xml=test-reports/results.xml test_api.py"
                 sh "ls -la"
             }
