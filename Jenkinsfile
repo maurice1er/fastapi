@@ -3,17 +3,6 @@ pipeline{
     // agent { docker { image 'python:3.8' } }
 
     stages{
-        stage('pre'){
-            agent {
-                docker {
-                    image 'python:latest'
-                }
-            }
-            steps{
-                sh "docker images"
-            }
-        }
-
         stage("Build image"){
             steps{
                 sh "pwd"  
@@ -40,7 +29,8 @@ pipeline{
         }
         stage("Test app"){
             steps{
-                sh "docker exec fastapi pytest"
+                sh "docker exec fastapi pytest --verbose --junit-xml=test-reports/results.xml test_api.py"
+                
             }
             post {
                 always {
