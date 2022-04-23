@@ -30,7 +30,7 @@ pipeline{
         stage("Test app"){
             steps{
                 sh "docker exec fastapi pytest --verbose --junit-xml=test-reports/results.xml test_api.py"
-                
+                sh "ls -la"
             }
             post {
                 always {
