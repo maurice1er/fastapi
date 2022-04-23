@@ -24,7 +24,7 @@ pipeline{
                         echo "${err}"
                     }
                 }
-                sh "docker run -itd -p 9009:8080 --name fastapi fastapi:1.0"
+                sh "docker run -itd -p 9009:8080 --name fastapi -v ${PWD}:/usr/src/app fastapi:1.0"
             }
         }
         stage("Test app"){
