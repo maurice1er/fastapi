@@ -26,7 +26,7 @@ pipeline{
                 }
                 sh "pwd"
                 sh "ls -la"
-                sh "docker run -itd -p 9009:8080 --name fastapi -v ${PWD}/$JOB_NAME:/usr/src/app fastapi:1.0"
+                sh "docker run -itd -p 9009:8080 --name fastapi -v ./:/usr/src/app fastapi:1.0"
                 sh "pwd"
                 sh "ls -la"
             }
