@@ -26,7 +26,7 @@ pipeline{
                 }
                 sh "pwd"
                 sh "ls -la"
-                sh "docker run -itd -p 9009:8080 --name fastapi -v ${PWD}:/usr/src/app fastapi:1.0"
+                sh "docker run -itd -p 9009:8080 --name fastapi -v /var/lib/jenkins/workspace/fastapi_main:/usr/src/app fastapi:1.0"
                 sh "pwd"
                 sh "ls -la"
             }
