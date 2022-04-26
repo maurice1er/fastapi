@@ -3,14 +3,23 @@ pipeline{
     // agent { docker { image 'python:3.8' } }
 
     stages{
+
+        stage("SonarQube scan") {
+            steps {
+                script {
+                    sh "mvn sonar:sonar -X"
+                }
+            }
+        }
+
         stage("Build image"){
             steps{
-                sh "pwd"  
-                sh "ls -la"  
+                // sh "pwd"  
+                // sh "ls -la"  
                 sh "docker system prune --filter 'app=fastapi'"
                 sh "docker images"
                 sh "docker build -t fastapi:1.0 ."
-                sh "docker images"
+                // sh "docker images"
             }
         }
         stage("Run container"){
@@ -24,11 +33,11 @@ pipeline{
                         echo "${err}"
                     }
                 }
-                sh "pwd"
-                sh "ls -la"
+                // sh "pwd"
+                // sh "ls -la"
                 sh "docker run -itd -p 9009:8080 --name fastapi -v /var/lib/jenkins/workspace/fastapi_main:/usr/src/app fastapi:1.0"
-                sh "pwd"
-                sh "ls -la"
+                // sh "pwd"
+                // sh "ls -la" 
             }
         }
         stage("Test app"){

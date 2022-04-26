@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  commissions-deployment
+  labels:
+    app: ventesim
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ventesim
+  template:
+    metadata:
+      labels:
+        app: ventesim
+    spec:
+      containers:
+      - name: ventesim
+        image: 70077007/fastapi
+        ports:
+        - containerPort: 80
+
+
