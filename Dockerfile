@@ -1,4 +1,5 @@
-FROM python:latest
+FROM python:3.10.4-slim-bullseye
+#python:latest
 
 LABEL app="fastapi"
 
